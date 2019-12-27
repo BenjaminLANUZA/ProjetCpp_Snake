@@ -1,13 +1,15 @@
 #ifndef VORTEXPASTILLE
 #define VORTEXPASTILLE
 #include <vector>
+#include <algorithm>
+#include <cstdlib>
 #include "Pastille.hh"
 class VortexPastille:public Pastille{
 public:
-  VortexPastille():Pastille(){};
-  VortexPastille(int positionX, int positionY):Pastille(positionX, positionY){}
-  VortexPastille(const VortexPastille& v):Pastille(v.getX(),v.getY()){}
-  VortexPastille(const Chemin& c):Pastille(c){}
+  VortexPastille():Pastille(){srand(time(0));};
+  VortexPastille(int positionX, int positionY):Pastille(positionX, positionY){srand(time(0));}
+  VortexPastille(const VortexPastille& v):Pastille(v.getX(),v.getY()){srand(time(0));}
+  VortexPastille(const Chemin& c):Pastille(c){srand(time(0));}
   ~VortexPastille(){}
 
   string to_string()const{
@@ -16,20 +18,23 @@ public:
     return s.str();
   }
   string print()const{ return "x"; }
-/*
-  vector<const Chemin&> action(vector<const VortexMur&> murvortex)const{
-    vector<const Chemin&> teleportation;
-    for(const VortexMur& v : murvortex){
-      teleportation.push_back(v.activate());
-    }
-    return teleportation;
-  };
 
-  void disable(vector<const VortexMur&> murvortex){
-      for(VortexMur v : murvortex){
+  Chemin& activate(vector<Chemin>& c){
+    //seule la pastille sait sur quel chemin un element va se teleporte
+    return c[(rand() % ((int)c.size() - 1))];
+  }
+
+  void activate(vector<VortexMur>& murvortex){
+    for(VortexMur& v : murvortex){
+      v.activate();
+    }
+  }
+
+  void disable(vector<VortexMur>& murvortex){
+      for(VortexMur& v : murvortex){
         v.desactivate();
       }
-  };*/
+  }
 
 };
 

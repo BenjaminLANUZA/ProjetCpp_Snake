@@ -1,33 +1,32 @@
 #ifndef VORTEXMUR
 #define VORTEXMUR
 
-#include "SmokedMur.hh"
+#include <algorithm>
+#include <cstdlib>
 #include "Chemin.hh"
+#include "SmokedMur.hh"
 
 using namespace std;
 
 class VortexMur : public SmokedMur{
-  private :
-  const Chemin& teleportation;
-
   public :
-  VortexMur(int positionX, int positionY, const Chemin& tel):SmokedMur(positionX, positionY),teleportation(tel){};
-  VortexMur(const VortexMur& v):SmokedMur(v.getX(), v.getY()),teleportation(v.getTeleportation()){};
+  VortexMur(int positionX, int positionY):SmokedMur(positionX, positionY){};
+  VortexMur(const VortexMur& v):SmokedMur(v.getX(), v.getY()){};
   ~VortexMur(){};
 
-  const Chemin& getTeleportation()const{ return this->teleportation; };
   string to_string()const{ return "mur vortex"; };
   string print()const{ return print_mur_specifique; };
-  //on retourne le mur vers lequel se teleporter
-  const Chemin& activate(){
+  void activate(){
     this->traversable = true;
     this->print_mur_specifique = "@";
-    return this->teleportation;
-  };
-  //a chaque desactivation, le mur vers lequel le vortex pointe change
+  }
+  //on retourne le chemin vers lequel se teleporter
+  Chemin& teleportation(vector<Chemin>& c){
+    return c[(rand() % ((int)c.size() - 1))];
+  }
   void desactivate(){
     this->traversable = false;
     this->print_mur_specifique = "=";
-  };
+  }
 };
 #endif /* end of include guard: VORTEXMUR */

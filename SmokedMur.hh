@@ -11,12 +11,12 @@ class SmokedMur : public Mur{
   string print_mur_specifique;
 
   public :
-  SmokedMur(int positionX, int positionY):Mur(positionX, positionY), print_mur_specifique("="){}
-  SmokedMur(const SmokedMur& s):Mur(s.getX(),s.getY()){}
+  SmokedMur(int positionX, int positionY):Mur(positionX, positionY),print_mur_specifique("="){}
+  SmokedMur(const SmokedMur& s):Mur(s.getX(),s.getY()),print_mur_specifique("="){}
   ~SmokedMur(){}
 
   string to_string()const{ return "SmokedMur"; }
-  string print()const{ return "="; } ////PROBLEME A REGLER NORMALEMENT DOIT RETOURNER print_mur_specifique MAIS MARCHE PAS
+  string print()const{ return this->print_mur_specifique; }
   //permet de definir l aspect traversable ou non d un tel mur
   void activate(){
     this->traversable = true;

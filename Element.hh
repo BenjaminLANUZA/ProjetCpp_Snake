@@ -3,6 +3,7 @@
 #include <iostream>
 #include <string>
 #include <sstream>
+#include <fstream>
 using namespace std;
 //un element a une position (x,y)
 //un element peut etre un Body, une pastille, un mur ou un chemin
@@ -26,5 +27,12 @@ class Element{
   bool is_traversable()const{ return traversable;};
   virtual string to_string()const = 0;
   virtual string print()const = 0;
+  friend ofstream& operator<<(ofstream& f, Element& e);
+
 };
+
+inline ofstream& operator<<(ofstream& f, Element& e){
+  f << e.x << " " << e.y << endl;
+  return f;
+}
 #endif /* end of include guard: ELEMENT */
