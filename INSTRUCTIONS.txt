@@ -60,7 +60,7 @@ Pour afficher les autres éléments :
 	tu parcours tous les vecteurs (chemin compris ou non, ça dépend si l'étape du deçu est possible) (cf fonction print des classes citées plus haut)
 	En fonction du nom du vecteur parcouru (Snake, Mur, smokedMur....) tu places l'image correspondante à la position suivante :
 			(element_du_vector.getX() + 1 ) * 63
-			(element_du_vector.getX() + 1 ) * 63
+			(element_du_vector.getX() + 1 ) * 63 -> Y ?
 
 Vu que tous tes éléments à placer ont une taille de 63 x 63 et que sur ton affichage tu as déjà les murs externes placés donc si t'as un
 MurSmoked qui a une position x = 0 ; y = 0 => sur ton affichage => (x + 1) * 63 = 63 et (y + 1) * 63 = 63 te placera ton image de ce mur
