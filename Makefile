@@ -1,6 +1,6 @@
 CC=g++
 CCFLAGS= -Wall -Werror -std=c++11 -g
-LIBFLAGS=
+LIBFLAGS=-lsfml-graphics -lsfml-window -lsfml-system
 SRC= $(wildcard *.cc)
 OBJ= $(SRC:.cc=.o)
 OBJ_TEST = $(filter-out logic.o, $(OBJ)) $(TST:.cc=.o)
@@ -19,6 +19,7 @@ $(EXEC): $(OBJ)
 	$(CC) $(CCFLAGS) -o $@ -c $<
 
 .depend:
+
 	g++ -MM $(SRC) > .depends
 -include .depends
 
