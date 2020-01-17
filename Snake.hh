@@ -4,6 +4,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <thread>         // std::thread
 #include "Partiesimple.hh"
 #include "Partiecomplex.hh"
 
@@ -12,9 +13,6 @@ using namespace std;
 class Snake{
 
 private :
-  Partiesimple* ps;
-  Partiecomplex* pc;
-  int previous_score;
 
 public:
   Snake();

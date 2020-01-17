@@ -72,6 +72,7 @@ string Partiecomplex::to_string()const{
 }
 ////////////////////////////////////////////////
 ///////GESTION/DU/JEU////////////////////////
+
 void Partiecomplex::action(int positionX, int positionY){
   Element* elementSuivant = is_movement_possible(positionX, positionY);
   if(elementSuivant == NULL)
