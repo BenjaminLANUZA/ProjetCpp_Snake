@@ -49,7 +49,7 @@ int main(){
   return 0;
 }
 
-snake(){
+void snake(){
   do{
     if(init_autorisee == 1 || init_autorisee == 0){ //autorise a initialiser la partie
       init_partie();
@@ -94,7 +94,7 @@ void init_partie(){
   init_autorisee = 2; //on indique que l'initialisation est faite
 }
 
-void Snake::print_rules(){
+void print_rules(){
   //affichage des regles du jeu
   ifstream f("./data/Regles.txt");
   if(f.is_open())
@@ -102,7 +102,7 @@ void Snake::print_rules(){
   f.close();
 }
 //on choisit le mode de jeu que l'on veut faire, ainsi que les differents niveaux
-void Snake::start_new_game(){
+void start_new_game(){
     switch(type_partie){
       case 's':
         ps = new Partiesimple();
@@ -116,7 +116,7 @@ void Snake::start_new_game(){
         break;
     }
 }
-void Snake::choose_difficulty(){
+void choose_difficulty(){
   switch(difficulte){
     case 2:
       pc = new Partiecomplex(medium);
@@ -136,7 +136,7 @@ void Snake::choose_difficulty(){
 
 //on cree/modifie le fichier user.txt pour stocker les donnees formatees pour etre
 //reutilisables pour recreer la meme partie lors de la prochaine execution du jeu
-void Snake::store_data()const{
+void store_data()const{
   ofstream file_nbPoints_snake;
   file_nbPoints_snake.open("./data/user.txt", file_nbPoints_snake.out | file_nbPoints_snake.trunc);
   if(file_nbPoints_snake.is_open()){
@@ -150,18 +150,18 @@ void Snake::store_data()const{
   }
   file_nbPoints_snake.close();
 }
-void Snake::save_partie_simple(ofstream& f)const{
+void save_partie_simple(ofstream& f)const{
   f << "ps" << endl;
   f << *ps << endl;
 }
-void Snake::save_partie_complexe(ofstream& f)const{
+void save_partie_complexe(ofstream& f)const{
   f << "pc" << endl;
   f << *pc << endl;
 }
 
 
 //On va recreer la partie precedente a partir des donnes sauvegardees dans user.txt
-void Snake::set_last_game(ifstream& f){
+void set_last_game(ifstream& f){
   string n;
   getline(f,n);
   if(n == "ps"){ //Partiesimple
@@ -171,7 +171,7 @@ void Snake::set_last_game(ifstream& f){
   type_partie = 'c';
   return set_partie_complexe(f); //Partiecomplex
 }
-void Snake::set_partie_simple(ifstream& f){
+void set_partie_simple(ifstream& f){
   vector<Chemin> c = set_chemin(f);
   vector<Body> b = set_snake(f);
   EatablePastille e = set_eatablepastille(f);
@@ -181,7 +181,7 @@ void Snake::set_partie_simple(ifstream& f){
   cout << ps->print() << endl;
   return;
 }
-void Snake::set_partie_complexe(ifstream& f){
+void set_partie_complexe(ifstream& f){
   vector<Chemin> c = set_chemin(f);
   vector<Body> b = set_snake(f);
   EatablePastille e = set_eatablepastille(f);
@@ -197,7 +197,7 @@ void Snake::set_partie_complexe(ifstream& f){
 ///////////RECUPERE/LE/CONTENU/DU/FICHIER/user.txt/POUR/RECREER/LA/PARTIE/PRECEDENTE////////
 //on va parcourir le fichier user.txt entre 2 bornes definies selon la donnee que l'on cherche a extraire,
 //on va extraire cette donne et recreer un groupe d'element du jeu : snake, chemins, murs, pastilles...
-vector<Chemin> Snake::set_chemin(ifstream& f)const{
+vector<Chemin> set_chemin(ifstream& f)const{
   vector<Chemin> chemin;
   string n;
   getline(f, n);
@@ -209,7 +209,7 @@ vector<Chemin> Snake::set_chemin(ifstream& f)const{
   }while(n != "snake");
   return chemin;
 }
-vector<Body> Snake::set_snake(ifstream& f)const{
+vector<Body> set_snake(ifstream& f)const{
   vector<Body> snake;
   string n;
   do{
@@ -220,7 +220,7 @@ vector<Body> Snake::set_snake(ifstream& f)const{
   }while(n != "eatable");
   return snake;
 }
-EatablePastille Snake::set_eatablepastille(ifstream& f)const{
+EatablePastille set_eatablepastille(ifstream& f)const{
   EatablePastille e;
   string n;
   /*do{
@@ -230,7 +230,7 @@ EatablePastille Snake::set_eatablepastille(ifstream& f)const{
   getline(f, n);
   return EatablePastille(positionX(n), positionY(n));
 }
-SmokedPastille Snake::set_smokedpastille(ifstream& f)const{
+SmokedPastille set_smokedpastille(ifstream& f)const{
   SmokedPastille s;
   string n;
   do{
@@ -239,7 +239,7 @@ SmokedPastille Snake::set_smokedpastille(ifstream& f)const{
   getline(f, n);
   return SmokedPastille(positionX(n), positionY(n));
 }
-VortexPastille Snake::set_vortexpastille(ifstream& f)const{
+VortexPastille set_vortexpastille(ifstream& f)const{
   VortexPastille v;
   string n;
   do{
@@ -248,7 +248,7 @@ VortexPastille Snake::set_vortexpastille(ifstream& f)const{
   getline(f, n);
   return VortexPastille(positionX(n), positionY(n));
 }
-vector<Mur> Snake::set_mur(ifstream& f)const{
+vector<Mur> set_mur(ifstream& f)const{
   vector<Mur> mur;
   string n;
   do{
@@ -262,7 +262,7 @@ vector<Mur> Snake::set_mur(ifstream& f)const{
   }while(n != "smoked");
   return mur;
 }
-vector<SmokedMur> Snake::set_smokedmur(ifstream& f)const{
+vector<SmokedMur> set_smokedmur(ifstream& f)const{
   vector<SmokedMur> murs;
   string n;
   do{
@@ -273,7 +273,7 @@ vector<SmokedMur> Snake::set_smokedmur(ifstream& f)const{
   }while(n != "vortex");
   return murs;
 }
-vector<VortexMur> Snake::set_vortexmur(ifstream& f)const{
+vector<VortexMur> set_vortexmur(ifstream& f)const{
   vector<VortexMur> mur;
   string n;
   while(!f.eof()){
@@ -285,12 +285,12 @@ vector<VortexMur> Snake::set_vortexmur(ifstream& f)const{
   return mur;
 }
 
-int Snake::positionX(const string& s)const{
+int positionX(const string& s)const{
   string delim(" ");
   string x = s.substr(0, s.find(delim));
   return (stoi(x));
 }
-int Snake::positionY(const string& s)const{
+int positionY(const string& s)const{
   string delim(" ");
   string y = s.substr(s.find(delim) + 1, s.size() - 1);
   return (stoi(y));

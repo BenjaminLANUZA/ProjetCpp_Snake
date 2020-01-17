@@ -10,28 +10,22 @@
 
 using namespace std;
 
-class Snake{
-
-private :
-
-public:
-  Snake();
-  ~Snake();
-
+  void snake();
+  void init_partie();
   void print_rules();
   ///////CREE/UNE/NOUVELLE/PARTIE///////
-  int start_new_game();
-  int choose_difficulty(char& choix);
+  void start_new_game();
+  void choose_difficulty();
   ///////////////////////////////////////
   ///////SAUVEGARDE/LA/PARTIE////////////
-  void store_data(int score)const;
+  void store_data()const;
   void save_partie_simple(ofstream& f)const;
   void save_partie_complexe(ofstream& f)const;
   ////////////////////////////////////////
   //////////INITIE/LA/RECREATION/DE/LA/PARTIE/PRECEDENTE////////////
-  int set_last_game(ifstream& f);
-  int set_partie_simple(ifstream& f);
-  int set_partie_complexe(ifstream& f);
+  void set_last_game(ifstream& f);
+  void set_partie_simple(ifstream& f);
+  void set_partie_complexe(ifstream& f);
   ////////////////////////////////////////////////////////////////////////////////////////////
   ///////////RECUPERE/LE/CONTENU/DU/FICHIER/user.txt/POUR/RECREER/LA/PARTIE/PRECEDENTE////////
   vector<Body> set_snake(ifstream& f)const;
@@ -52,6 +46,5 @@ public:
       f << it->getX() << " " << it->getY() << endl;
     }
   }
-};
 
 #endif /* end of include guard: SNAKE */
