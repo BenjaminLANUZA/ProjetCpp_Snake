@@ -2,21 +2,23 @@
 
 using namespace std;
 
-volatile char direction;
+volatile char direction; //direciton deplacement du snake
 volatile bool jeu_en_cours; //false quand partie finie
 volatile int init_autorisee; //-1 non 0 et 1 oui 2 init effectuee
 volatile bool jeu_autorise; //quand action a faire vaut true
-volatile int difficulte
+volatile int difficulte; //0 easy 1 medium 2 hard
 volatile char type_partie; //si s alors partiesimple, si c alors Partiecomplex
-int& nbPoints_snake;
+int& nbPoints_snake; //nb de points du joueur
 
 Partiesimple* ps;
 Partiecomplex* pc;
 
 int main(){
-  action_autorisee = false;
+  jeu_autorise = false;
   init_autorisee = -1;
   jeu_en_cours = true;
+  type_partie = ' ';
+  direciton =
   ps = NULL;
   pc = NULL;
 
@@ -150,7 +152,7 @@ void choose_difficulty(){
 
 //on cree/modifie le fichier user.txt pour stocker les donnees formatees pour etre
 //reutilisables pour recreer la meme partie lors de la prochaine execution du jeu
-void store_data()const{
+void store_data(){
   ofstream file_nbPoints_snake;
   file_nbPoints_snake.open("./data/user.txt", file_nbPoints_snake.out | file_nbPoints_snake.trunc);
   if(file_nbPoints_snake.is_open()){
@@ -164,11 +166,11 @@ void store_data()const{
   }
   file_nbPoints_snake.close();
 }
-void save_partie_simple(ofstream& f)const{
+void save_partie_simple(ofstream& f){
   f << "ps" << endl;
   f << *ps << endl;
 }
-void save_partie_complexe(ofstream& f)const{
+void save_partie_complexe(ofstream& f){
   f << "pc" << endl;
   f << *pc << endl;
 }
@@ -211,7 +213,7 @@ void set_partie_complexe(ifstream& f){
 ///////////RECUPERE/LE/CONTENU/DU/FICHIER/user.txt/POUR/RECREER/LA/PARTIE/PRECEDENTE////////
 //on va parcourir le fichier user.txt entre 2 bornes definies selon la donnee que l'on cherche a extraire,
 //on va extraire cette donne et recreer un groupe d'element du jeu : snake, chemins, murs, pastilles...
-vector<Chemin> set_chemin(ifstream& f)const{
+vector<Chemin> set_chemin(ifstream& f){
   vector<Chemin> chemin;
   string n;
   getline(f, n);
@@ -223,7 +225,7 @@ vector<Chemin> set_chemin(ifstream& f)const{
   }while(n != "snake");
   return chemin;
 }
-vector<Body> set_snake(ifstream& f)const{
+vector<Body> set_snake(ifstream& f){
   vector<Body> snake;
   string n;
   do{
@@ -234,7 +236,7 @@ vector<Body> set_snake(ifstream& f)const{
   }while(n != "eatable");
   return snake;
 }
-EatablePastille set_eatablepastille(ifstream& f)const{
+EatablePastille set_eatablepastille(ifstream& f){
   EatablePastille e;
   string n;
   /*do{
@@ -244,7 +246,7 @@ EatablePastille set_eatablepastille(ifstream& f)const{
   getline(f, n);
   return EatablePastille(positionX(n), positionY(n));
 }
-SmokedPastille set_smokedpastille(ifstream& f)const{
+SmokedPastille set_smokedpastille(ifstream& f){
   SmokedPastille s;
   string n;
   do{
@@ -253,7 +255,7 @@ SmokedPastille set_smokedpastille(ifstream& f)const{
   getline(f, n);
   return SmokedPastille(positionX(n), positionY(n));
 }
-VortexPastille set_vortexpastille(ifstream& f)const{
+VortexPastille set_vortexpastille(ifstream& f){
   VortexPastille v;
   string n;
   do{
@@ -262,7 +264,7 @@ VortexPastille set_vortexpastille(ifstream& f)const{
   getline(f, n);
   return VortexPastille(positionX(n), positionY(n));
 }
-vector<Mur> set_mur(ifstream& f)const{
+vector<Mur> set_mur(ifstream& f){
   vector<Mur> mur;
   string n;
   do{
@@ -276,7 +278,7 @@ vector<Mur> set_mur(ifstream& f)const{
   }while(n != "smoked");
   return mur;
 }
-vector<SmokedMur> set_smokedmur(ifstream& f)const{
+vector<SmokedMur> set_smokedmur(ifstream& f){
   vector<SmokedMur> murs;
   string n;
   do{
@@ -287,7 +289,7 @@ vector<SmokedMur> set_smokedmur(ifstream& f)const{
   }while(n != "vortex");
   return murs;
 }
-vector<VortexMur> set_vortexmur(ifstream& f)const{
+vector<VortexMur> set_vortexmur(ifstream& f){
   vector<VortexMur> mur;
   string n;
   while(!f.eof()){
@@ -299,12 +301,12 @@ vector<VortexMur> set_vortexmur(ifstream& f)const{
   return mur;
 }
 
-int positionX(const string& s)const{
+int positionX(const string& s){
   string delim(" ");
   string x = s.substr(0, s.find(delim));
   return (stoi(x));
 }
-int positionY(const string& s)const{
+int positionY(const string& s){
   string delim(" ");
   string y = s.substr(s.find(delim) + 1, s.size() - 1);
   return (stoi(y));

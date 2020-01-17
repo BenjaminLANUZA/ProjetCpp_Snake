@@ -18,9 +18,9 @@ using namespace std;
   void choose_difficulty();
   ///////////////////////////////////////
   ///////SAUVEGARDE/LA/PARTIE////////////
-  void store_data()const;
-  void save_partie_simple(ofstream& f)const;
-  void save_partie_complexe(ofstream& f)const;
+  void store_data();
+  void save_partie_simple(ofstream& f);
+  void save_partie_complexe(ofstream& f);
   ////////////////////////////////////////
   //////////INITIE/LA/RECREATION/DE/LA/PARTIE/PRECEDENTE////////////
   void set_last_game(ifstream& f);
@@ -28,19 +28,19 @@ using namespace std;
   void set_partie_complexe(ifstream& f);
   ////////////////////////////////////////////////////////////////////////////////////////////
   ///////////RECUPERE/LE/CONTENU/DU/FICHIER/user.txt/POUR/RECREER/LA/PARTIE/PRECEDENTE////////
-  vector<Body> set_snake(ifstream& f)const;
-  vector<Chemin> set_chemin(ifstream& f)const;
-  vector<Mur> set_mur(ifstream& f)const;
-  vector<SmokedMur> set_smokedmur(ifstream& f)const;
-  vector<VortexMur> set_vortexmur(ifstream& f)const;
-  EatablePastille set_eatablepastille(ifstream& f)const;
-  VortexPastille set_vortexpastille(ifstream& f)const;
-  SmokedPastille set_smokedpastille(ifstream& f)const;
-  int positionX(const string& s)const;
-  int positionY(const string& s)const;
+  vector<Body> set_snake(ifstream& f);
+  vector<Chemin> set_chemin(ifstream& f);
+  vector<Mur> set_mur(ifstream& f);
+  vector<SmokedMur> set_smokedmur(ifstream& f);
+  vector<VortexMur> set_vortexmur(ifstream& f);
+  EatablePastille set_eatablepastille(ifstream& f);
+  VortexPastille set_vortexpastille(ifstream& f);
+  SmokedPastille set_smokedpastille(ifstream& f);
+  int positionX(const string& s);
+  int positionY(const string& s);
   ////////////////////////////////////////////////////////////////////////////////////////////
   template <typename T>
-  void register_vector(ofstream& f, const vector<T>& vect)const{
+  void register_vector(ofstream& f, const vector<T>& vect){
     typename vector<T>::const_iterator it;
     for(it = vect.begin(); it != vect.end(); it++){
       f << it->getX() << " " << it->getY() << endl;
