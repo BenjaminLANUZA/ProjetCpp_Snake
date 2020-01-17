@@ -74,12 +74,12 @@ public:
     delete[] matrixGame;
   }
   //accesseurs
-  int& getNbPoints()const;
-  vector<Chemin>& getChemin()const;
-  vector<Body>& getSnake()const;
-  EatablePastille& getEatablePastille()const;
-  SmokedPastille& getSmokedPastille()const;
-  VortexPastille& getVortexPastille()const;
+  const int& getNbPoints()const;
+  const vector<Chemin>& getChemin()const;
+  const vector<Body>& getSnake()const;
+  const EatablePastille& getEatablePastille()const;
+  const SmokedPastille& getSmokedPastille()const;
+  const VortexPastille& getVortexPastille()const;
   //operateurs permettants de formatter la sauvegarde d'un groupe d'element sur un fichier
   friend ofstream& operator<<(ofstream& f, vector<Chemin>& v);
   friend ofstream& operator<<(ofstream& f, vector<Body>& v);

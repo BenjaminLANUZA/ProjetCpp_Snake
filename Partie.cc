@@ -1,11 +1,11 @@
 #include "Partie.hh"
 
-int& Partie::getNbPoints()const{ return this->nbPoints;}
-vector<Chemin>& Partie::getChemin()const{ return this->chemin;}
-vector<Body>& Partie::getSnake()const{ return this->snake;}
-EatablePastille& Partie::getEatablePastille()const{ return this->pastilleEatable;}
-SmokedPastille& Partie::getSmokedPastille()const{ return this->pastilleSmoked;}
-VortexPastille& Partie::getVortexPastille()const{ return this->pastilleVortex;}
+const int& Partie::getNbPoints()const{ return this->nbPoints;}
+const vector<Chemin>& Partie::getChemin()const{ return this->chemin;}
+const vector<Body>& Partie::getSnake()const{ return this->snake;}
+const EatablePastille& Partie::getEatablePastille()const{ return this->pastilleEatable;}
+const SmokedPastille& Partie::getSmokedPastille()const{ return this->pastilleSmoked;}
+const VortexPastille& Partie::getVortexPastille()const{ return this->pastilleVortex;}
 
 int Partie::find_rand_chemin()const{
   return rand() % ((int)this->chemin.size() - 1);

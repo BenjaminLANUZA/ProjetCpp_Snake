@@ -55,6 +55,10 @@ Partiecomplex::Partiecomplex(Complexite difficulte):Partie(), pastilleVortex_rea
 }
 
 Partiecomplex::~Partiecomplex(){}
+
+const Partiecomplex::vector<VortexMur>& getMurVortex()const{ return this->murVortex; }
+const Partiecomplex::vector<SmokedMur>& getMurSmoked()const{ return this->murSmoked; }
+const Partiecomplex::vector<Mur>& getMur()const{ return this->mur; }
 /////////////AFFICHAGES/////////////////////////
 string Partiecomplex::print()const{
   string t[GAME_SIZE_PRINT][GAME_SIZE_PRINT];

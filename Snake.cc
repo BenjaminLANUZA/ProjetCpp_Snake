@@ -3,15 +3,15 @@
 using namespace std;
 
 volatile char direction;
-volatile bool jeu_en_cours;
+volatile bool jeu_en_cours; //false quand partie finie
 volatile int init_autorisee; //-1 non 0 et 1 oui 2 init effectuee
-volatile bool jeu_autorise;
+volatile bool jeu_autorise; //quand action a faire vaut true
 volatile int difficulte
+volatile char type_partie; //si s alors partiesimple, si c alors Partiecomplex
 int& nbPoints_snake;
 
 Partiesimple* ps;
 Partiecomplex* pc;
-char type_partie; //si s alors partiesimple, si c alors Partiecomplex
 
 int main(){
   action_autorisee = false;
@@ -42,7 +42,20 @@ int main(){
       et affichage pour chaque element en faisant un getX et getY
     else
       *pc.getChemin() etc etc
+
+    exemple
+    for(Chemin c : ps->getChemin()){
+      afficher un chemin a la position (c.getX(), c.getY())
+    }
+  }
     */
+
+//LES DEPLACMENTS DU JOUEUR SONT A ENREGISTRER DANS direction sous la forme
+  // direciton 'z' haut, 'w' bas, 'd' droite, 'q' gauche
+
+    //ensuite quand le joueur clique sur un bouton ou fait une action (deplacer le snake)
+    //tu dois mettre
+    //action autorisee a true
 
   }
 
@@ -55,11 +68,12 @@ void snake(){
       init_partie();
     }
     else{
-      if(init_autorisee == 2){ //si initialisation faite
+      if(init_autorisee == 2 && action_autorisee){ //si initialisation faite
         if(type_partie == 's')
           jeu_en_cours = ps->jeu(direction, nbPoints_snake);
         else
           jeu_en_cours = pc->jeu(direction, nbPoints_snake);
+        action_autorisee = false; //on indique qu on vient de finir l aciton
       }
     }
   }while(jeu_en_cours);

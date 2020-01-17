@@ -25,9 +25,9 @@ public:
   ~Partiecomplex();
   //operateur permettant de formatter la sauvegarde de la partie sur un fichier
   friend ofstream& operator<<(ofstream& f, Partiecomplex& p);
-  vector<VortexMur>& getMurVortex()const;
-  vector<SmokedMur>& getMurSmoked()const;
-  vector<Mur>& getMur()const;
+  const vector<VortexMur>& getMurVortex()const;
+  const vector<SmokedMur>& getMurSmoked()const;
+  const vector<Mur>& getMur()const;
 
   void action(int positionX, int positionY);
   Element* is_bord_traversable(int positionX, int positionY);
