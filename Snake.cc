@@ -2,23 +2,26 @@
 
 using namespace std;
 
-volatile char direction; //direciton deplacement du snake
-volatile bool jeu_en_cours; //false quand partie finie
-volatile int init_autorisee; //-1 non 0 et 1 oui 2 init effectuee
-volatile bool jeu_autorise; //quand action a faire vaut true
-volatile int difficulte; //0 easy 1 medium 2 hard
-volatile char type_partie; //si s alors partiesimple, si c alors Partiecomplex
-int& nbPoints_snake; //nb de points du joueur
+char direction; //direciton deplacement du snake
+bool jeu_en_cours; //false quand partie finie
+int init_autorisee; //-1 non 0 et 1 oui 2 init effectuee
+bool jeu_autorise; //quand action a faire vaut true
+int difficulte; //0 easy 1 medium 2 hard
+char type_partie; //si s alors partiesimple, si c alors Partiecomplex
+int nbPoints_snake; //nb de points du joueur
+
 
 Partiesimple* ps;
 Partiecomplex* pc;
 
 int main(){
+  nbPoints_snake = -1;
   jeu_autorise = false;
   init_autorisee = -1;
   jeu_en_cours = true;
   type_partie = ' ';
-  direciton =
+  direction = ' ';
+
   ps = NULL;
   pc = NULL;
 
@@ -70,19 +73,19 @@ void snake(){
       init_partie();
     }
     else{
-      if(init_autorisee == 2 && action_autorisee){ //si initialisation faite
+      if(init_autorisee == 2 && jeu_autorise){ //si initialisation faite
         if(type_partie == 's')
-          jeu_en_cours = ps->jeu(direction, nbPoints_snake);
+          jeu_en_cours = ps->jeu(direction, &nbPoints_snake);
         else
-          jeu_en_cours = pc->jeu(direction, nbPoints_snake);
-        action_autorisee = false; //on indique qu on vient de finir l aciton
+          jeu_en_cours = pc->jeu(direction, &nbPoints_snake);
+        jeu_autorise = false; //on indique qu on vient de finir l aciton
       }
     }
   }while(jeu_en_cours);
 
   cout << "Vous avez quitté le jeu" << endl;
   cout << "Votre nbPoints_snake : " << nbPoints_snake << endl;
-  store_data(nbPoints_snake);
+  store_data();
   //on desalloue la memoire
   delete(ps);
   delete(pc);
@@ -95,7 +98,6 @@ void init_partie(){
     ifstream file_previous_game("./data/user.txt");
 
     if(file_previous_game.is_open()){
-      char choix;
       getline(file_previous_game, n);
       nbPoints_snake = stoi(n);
       if(n != "") //cas ou il existe une partie precedente

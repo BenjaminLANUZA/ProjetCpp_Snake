@@ -139,7 +139,7 @@ public:
   bool is_Body(Element* e)const{ return (dynamic_cast<Body*>(e) != NULL); }
   //////////////////////////////////////////////
   ///////GESTION/DU/JEU////////////////////////
-  bool jeu(char direction, int& nbPoints_snake);
+  bool jeu(char direction, int* nbPoints_snake);
   virtual void action(int positionX, int positionY){} //definit le comportement du jeu en fonction des differents types de parties
   virtual Element* is_bord_traversable(int positionX, int positionY){return NULL;}
   Element* is_movement_possible(int positionX, int positionY);

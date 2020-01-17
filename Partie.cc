@@ -81,7 +81,7 @@ string Partie::to_stringTab(string tabPrint[GAME_SIZE_PRINT][GAME_SIZE_PRINT])co
   return s;
 }
 //////////////////////////////////////////////////////////////////////////////////
-bool Partie::jeu(char direction, int& nbPoints_snake){
+bool Partie::jeu(char direction, int* nbPoints_snake){
     int positionTeteX, positionTeteY;
       //on recupere la position de la tete du snake
       positionTeteX = snake.front().getX();
@@ -104,7 +104,7 @@ bool Partie::jeu(char direction, int& nbPoints_snake){
           break;
       }
       action(positionTeteX, positionTeteY);
-      nbPoints_snake = this->nbPoints;
+      *nbPoints_snake = this->nbPoints;
     return game;
 }
 Element* Partie::is_movement_possible(int positionX, int positionY){
