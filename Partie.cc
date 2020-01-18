@@ -83,19 +83,12 @@ string Partie::to_stringTab(string tabPrint[GAME_SIZE_PRINT][GAME_SIZE_PRINT])co
   return s;
 }
 //////////////////////////////////////////////////////////////////////////////////
-int Partie::jeu(){
-    char input;
+bool Partie::jeu(char direction, int* nbPoints_snake){
     int positionTeteX, positionTeteY;
-    //on cree les thread sur les parties
-    /*thread pastilleSmoked_time_management();
-    pastilleSmoked_time_management.join()*/
-    cout << "Commandes :\n\tz : haut\n\tw : bas\n\tq : gauche\n\td : droite\n\n\techap : quitte le jeu" << endl;
-    cin >> input;
-    while(input != 27 && game){
       //on recupere la position de la tete du snake
       positionTeteX = snake.front().getX();
       positionTeteY = snake.front().getY();
-      switch(input){
+      switch(direction){
         case 'z':
           positionTeteX--;
           break;
@@ -113,9 +106,8 @@ int Partie::jeu(){
           break;
       }
       action(positionTeteX, positionTeteY);
-      cin >> input;
-    }
-    return this->nbPoints;
+      *nbPoints_snake = this->nbPoints;
+    return game;
 }
 Element* Partie::is_movement_possible(int positionX, int positionY){
   if(is_bord(positionX, positionY))

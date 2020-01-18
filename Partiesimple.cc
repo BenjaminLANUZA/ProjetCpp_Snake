@@ -34,6 +34,7 @@ string Partiesimple::print()const{
 }
 ////////////////////////////////////////////////
 ///////GESTION/DU/JEU////////////////////////
+
 void Partiesimple::action(int positionX, int positionY){
   Element* elementSuivant = is_movement_possible(positionX, positionY);
   if(elementSuivant == NULL)
