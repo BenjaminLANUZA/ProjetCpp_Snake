@@ -1,9 +1,0 @@
-BLABLA PECHEUX :
-
-dans le dossier de pecheuuuuuuux, cours sur les Pthread
-aller dans url importante
-void *pdata -> permet de passer un numéro de client pendant l'éxecution du thread , dans le void* on met du n'importe quoi lolilol c deuguelasse voila 
-Region critique : sépare le moment ou on demande et on rend l'acces 
-muteclock unlock = région critique doit etre le plus corut possible
-pthread mutex c la vie ça
-
