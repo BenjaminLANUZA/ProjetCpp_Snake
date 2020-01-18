@@ -55,10 +55,6 @@ Partiecomplex::Partiecomplex(Complexite difficulte):Partie(), pastilleVortex_rea
 }
 
 Partiecomplex::~Partiecomplex(){}
-
-const vector<VortexMur>& Partiecomplex::getMurVortex()const{ return this->murVortex; }
-const vector<SmokedMur>& Partiecomplex::getMurSmoked()const{ return this->murSmoked; }
-const vector<Mur>& Partiecomplex::getMur()const{ return this->mur; }
 /////////////AFFICHAGES/////////////////////////
 string Partiecomplex::print()const{
   string t[GAME_SIZE_PRINT][GAME_SIZE_PRINT];
@@ -76,7 +72,6 @@ string Partiecomplex::to_string()const{
 }
 ////////////////////////////////////////////////
 ///////GESTION/DU/JEU////////////////////////
-
 void Partiecomplex::action(int positionX, int positionY){
   Element* elementSuivant = is_movement_possible(positionX, positionY);
   if(elementSuivant == NULL)
