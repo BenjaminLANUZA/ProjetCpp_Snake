@@ -4,6 +4,9 @@
 #include <string>
 #include <sstream>
 #include <fstream>
+#include <SFML/System.hpp>
+#include <SFML/Window.hpp>
+#include <SFML/Graphics.hpp>
 using namespace std;
 //un element a une position (x,y)
 //un element peut etre un Body, une pastille, un mur ou un chemin
@@ -14,6 +17,8 @@ class Element{
   int x;
   int y;
   bool traversable; //capacite d un element a etre traverse par un autre element
+  sf::Texture texture ; 
+  sf::Sprite sprite; 
 
   public :
   Element(){};

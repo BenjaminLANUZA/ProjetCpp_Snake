@@ -80,9 +80,9 @@ public:
   const EatablePastille& getEatablePastille()const;
   const SmokedPastille& getSmokedPastille()const;
   const VortexPastille& getVortexPastille()const;
-  const Element*** getMatrix()const;
+ // const Element*** getMatrix()const;
   const Element* getElementMatrixptr(int i, int j)const;
-  const Element getElementMatrix(int i, int j)const;
+ // const Element getElementMatrix(int i, int j)const;
   //operateurs permettants de formatter la sauvegarde d'un groupe d'element sur un fichier
   friend ofstream& operator<<(ofstream& f, vector<Chemin>& v);
   friend ofstream& operator<<(ofstream& f, vector<Body>& v);

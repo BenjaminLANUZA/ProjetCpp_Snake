@@ -7,7 +7,11 @@ class SmokedPastille:public Pastille{
 
 public:
   SmokedPastille():Pastille(){};
-  SmokedPastille(int positionX, int positionY):Pastille(positionX, positionY){}
+  SmokedPastille(int positionX, int positionY):Pastille(positionX, positionY){
+     (this->texture).loadFromFile("images/Pastilles/Smoked_Pastille.png", sf::IntRect(0, 0, 63, 63));
+    this->sprite.setTexture(this->texture);
+    (this->sprite).setPosition(positionX*63.f,positionY*63.f);
+  }
   SmokedPastille(const SmokedPastille& s):Pastille(s.getX(),s.getY()){}
   SmokedPastille(const Chemin& c):Pastille(c){}
   ~SmokedPastille(){}

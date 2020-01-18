@@ -10,7 +10,11 @@ using namespace std;
 
 class VortexMur : public SmokedMur{
   public :
-  VortexMur(int positionX, int positionY):SmokedMur(positionX, positionY){};
+  VortexMur(int positionX, int positionY):SmokedMur(positionX, positionY){
+      (this->texture).loadFromFile("images/Murs/Mur_Vortex.png", sf::IntRect(0, 0, 63, 63));
+    (this->sprite).setTexture(this->texture);
+    (this->sprite).setPosition(positionX*63.f,positionY*63.f);}
+  }
   VortexMur(const VortexMur& v):SmokedMur(v.getX(), v.getY()){};
   ~VortexMur(){};
 

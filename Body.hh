@@ -6,7 +6,12 @@
 class Body:public Element{
   public :
   Body():Element(){}
-  Body(int positionX, int positionY):Element(positionX,positionY,false){}
+  Body(int positionX, int positionY):Element(positionX,positionY,false){
+      (this->texture).loadFromFile("images/Snake/Corps.png", sf::IntRect(0, 0, 63, 63));
+    (this->sprite).setTexture(this->texture);
+    (this->sprite).setPosition(positionX*63.f,positionY*63.f);
+  }
+  
   Body(const Body& body):Element(body.getX(), body.getY(),false){}
   Body(Element* e):Element(e->getX(), e->getY(), false){}
   ~Body(){}
