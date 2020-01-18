@@ -27,8 +27,23 @@ class Element{
   virtual ~Element(){};
   int getX()const{ return x;};
   int getY()const{ return y;};
-  void setPosition(int positionX, int positionY){ this->x = positionX ; this->y = positionY;}
-  void setPosition(Element& e){this->x = e.getX(); this->y = e.getY();}
+
+  void setPosition(int positionX, int positionY){ 
+    this->x = positionX ;
+    this->y = positionY;
+    //MAJ POSITION SPRITE
+    (this->sprite).setPosition(positionX*63.f,positionY*63.f);
+  }
+
+
+  void setPosition(Element& e){
+    this->x = e.getX(); 
+    this->y = e.getY();
+     //MAJ POSITION SPRITE
+    (this->sprite).setPosition((this->x)*63.f,(this->y)*63.f);
+  }
+
+
   bool is_traversable()const{ return traversable;};
   virtual string to_string()const = 0;
   virtual string print()const = 0;
