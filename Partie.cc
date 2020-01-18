@@ -7,8 +7,8 @@ const EatablePastille& Partie::getEatablePastille()const{ return this->pastilleE
 const SmokedPastille& Partie::getSmokedPastille()const{ return this->pastilleSmoked;}
 const VortexPastille& Partie::getVortexPastille()const{ return this->pastilleVortex;}
 const Element*** Partie::getMatrix()const{ return this->matrixGame; }
-const Element Partie::getElementMatrix(int i, int j)const{ return this->matrixGame[i][j];}
-
+const Element* Partie::getElementMatrixptr(int i, int j)const{ return matrixGame[i][j];}
+const Element Partie::getElementMatrix(int i, int j)const{ return *(matrixGame[i][j]);}
 int Partie::find_rand_chemin()const{
   return rand() % ((int)this->chemin.size() - 1);
 }
