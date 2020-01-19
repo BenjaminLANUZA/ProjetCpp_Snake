@@ -11,6 +11,9 @@
 
 sf::RenderWindow window(sf::VideoMode(WINDOW,WINDOW), "Snake 4.0",sf::Style::Titlebar | sf::Style::Close);
 int i = DrawFond(window);
+if (!i){
+    return EXIT_FAILURE;
+}
 
    
 

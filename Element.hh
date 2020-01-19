@@ -27,6 +27,8 @@ class Element{
   virtual ~Element(){};
   int getX()const{ return x;};
   int getY()const{ return y;};
+  sf::Texture getTexture(){return texture;}
+  sf::Sprite getSprite(){return sprite;}
 
   void setPosition(int positionX, int positionY){ 
     this->x = positionX ;

@@ -7,15 +7,7 @@
 
 
 int main(){
-
-
-
    Snake  a;
 
-
-
-
-
- 
   return 0;
 }
