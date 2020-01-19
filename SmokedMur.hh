@@ -11,12 +11,11 @@ class SmokedMur : public Mur{
   string print_mur_specifique;
 
   public :
-  SmokedMur(int positionX, int positionY){
-    Mur(positionX, positionY),print_mur_specifique("=");
+  SmokedMur(int positionX, int positionY):Mur(positionX, positionY),print_mur_specifique("="){
     (this->texture).loadFromFile("images/Murs/Mur_Smoked.png", sf::IntRect(0, 0, 63, 63));
     (this->sprite).setTexture(this->texture);
     (this->sprite).setPosition(positionX*63.f,positionY*63.f);
- 
+
   }
   SmokedMur(const SmokedMur& s):Mur(s.getX(),s.getY()),print_mur_specifique("="){}
   ~SmokedMur(){}
