@@ -3,7 +3,7 @@
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 
-
+//LA boucle du jeu se trouve certainement dans PARTIE déplacer le code dans partie .hh, initialiser la window dans le constructeur de partiesimple et partie complexe ? passer window en attribut  de partie?
 //-------------------------------------------------------------------------------------------------------------------------------
 //Dessin WINDOW ET CONTOURS
 
