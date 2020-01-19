@@ -49,23 +49,18 @@ int Partie::DrawFond(){
 }
 
 //-------------------------------------------------------------------------------------------------------------
-void Partie::draw_Game(Element ***matrice){
-     int v = 0; 
-     v = DrawFond();
-     if(!v){cout<<"Erreur DrawFond"<<endl; }
-     
-     Element*  ElementMatrice;
+void Partie::draw_Game(){
+  int v = 0; 
+  v = DrawFond();
+  if(!v){cout<<"Erreur DrawFond"<<endl; }
+  for(unsigned int i = 0; i < this->snake.size(); i++){
+    this->window.draw(this->snake.at(i).getSprite()); 
+  }
 
-    for (int i = 0; i < 15; ++i)
-    {
-        for (int j = 0; j < 15; ++j)
-        {   
-            ElementMatrice = matrice[i][j]; 
-            (this->window).draw(ElementMatrice->getSprite());
-
-
-        }
-    }
+  this->window.draw(this->pastilleEatable.getSprite()); 
+  this->window.draw(this->pastilleSmoked.getSprite()); 
+  this->window.draw(this->pastilleVortex.getSprite()); 
+       
 }
 
 
@@ -192,7 +187,7 @@ int Partie::jeu(){
     cout<<"appel draw"<<endl; 
 
     (this->window).clear();
-    draw_Game(this->getMatrix()); 
+    draw_Game(); 
 
     (this->window).display();
     cout<<" sortie draw_game"<<endl;

@@ -13,9 +13,13 @@ class VortexMur : public SmokedMur{
   VortexMur(int positionX, int positionY):SmokedMur(positionX, positionY){
       (this->texture).loadFromFile("images/Murs/Mur_Vortex.png", sf::IntRect(0, 0, 63, 63));
     (this->sprite).setTexture(this->texture);
-    (this->sprite).setPosition(positionX*63.f,positionY*63.f);
+    (this->sprite).setPosition(positionX*64.f,positionY*64.f);
   }
-  VortexMur(const VortexMur& v):SmokedMur(v.getX(), v.getY()){};
+  VortexMur(const VortexMur& v):SmokedMur(v.getX(), v.getY()){
+      (this->texture).loadFromFile("images/Murs/Mur_Vortex.png", sf::IntRect(0, 0, 63, 63));
+    (this->sprite).setTexture(this->texture);
+    (this->sprite).setPosition(v.getX()*64.f,v.getY()*64.f);
+  }
   ~VortexMur(){};
 
   string to_string()const{ return "mur vortex"; };

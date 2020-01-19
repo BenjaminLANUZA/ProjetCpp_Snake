@@ -157,3 +157,27 @@ bool Partiecomplex::pastilleVortex_management(int positionX, int positionY){
   return true; //le snake n'est pas sur un murVortex
 }
 ////////////////////////////////////////////////
+
+
+void Partiecomplex::draw_Game(){
+  int v = 0; 
+  v = DrawFond();
+  if(!v){cout<<"Erreur DrawFond"<<endl; }
+  for(unsigned int i = 0; i < this->snake.size(); i++){
+    this->window.draw(this->snake.at(i).getSprite()); 
+  }
+
+  for(unsigned int i = 0; i < this->mur.size(); i++){
+    this->window.draw(this->mur.at(i).getSprite()); 
+  }
+  for(unsigned int i = 0; i < this->murSmoked.size(); i++){
+    this->window.draw(this->murSmoked.at(i).getSprite()); 
+  }
+  for(unsigned int i = 0; i < this->murVortex.size(); i++){
+    this->window.draw(this->murVortex.at(i).getSprite()); 
+  }
+  this->window.draw(this->pastilleEatable.getSprite()); 
+  this->window.draw(this->pastilleSmoked.getSprite()); 
+  this->window.draw(this->pastilleVortex.getSprite()); 
+       
+}

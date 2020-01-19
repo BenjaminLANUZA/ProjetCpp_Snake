@@ -35,7 +35,7 @@ class Element{
     this->y = positionY;
     //MAJ POSITION SPRITE
     cout<<"set pos sprite elem"<<endl; 
-    (this->sprite).setPosition(positionX*63.f,positionY*63.f);
+    (this->sprite).setPosition(positionX*64.f,positionY*64.f);
   }
 
 
@@ -43,7 +43,7 @@ class Element{
     this->x = e.getX(); 
     this->y = e.getY();
      //MAJ POSITION SPRITE
-    (this->sprite).setPosition((this->x)*63.f,(this->y)*63.f);
+    (this->sprite).setPosition((this->x)*64.f,(this->y)*64.f);
   }
 
 

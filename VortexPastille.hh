@@ -9,13 +9,24 @@
 #include "Pastille.hh"
 class VortexPastille:public Pastille{
 public:
-  VortexPastille():Pastille(){srand(time(0));};
+  VortexPastille():Pastille(){srand(time(0));
+     (this->texture).loadFromFile("images/Pastilles/Vortex_Pastille.png", sf::IntRect(0, 0, 63, 63));
+    (this->sprite).setTexture(this->texture);
+    }
   VortexPastille(int positionX, int positionY):Pastille(positionX, positionY){srand(time(0));
    (this->texture).loadFromFile("images/Pastilles/Vortex_Pastille.png", sf::IntRect(0, 0, 63, 63));
     (this->sprite).setTexture(this->texture);
-    (this->sprite).setPosition(positionX*63.f,positionY*63.f);}
-  VortexPastille(const VortexPastille& v):Pastille(v.getX(),v.getY()){srand(time(0));}
-  VortexPastille(const Chemin& c):Pastille(c){srand(time(0));}
+    (this->sprite).setPosition(positionX*64.f,positionY*64.f);}
+    
+  VortexPastille(const VortexPastille& v):Pastille(v.getX(),v.getY()){srand(time(0));
+  (this->texture).loadFromFile("images/Pastilles/Vortex_Pastille.png", sf::IntRect(0, 0, 63, 63));
+    (this->sprite).setTexture(this->texture);
+    (this->sprite).setPosition(v.getX()*64.f,v.getY()*64.f);}
+
+  VortexPastille(const Chemin& c):Pastille(c){srand(time(0));
+  (this->texture).loadFromFile("images/Pastilles/Vortex_Pastille.png", sf::IntRect(0, 0, 63, 63));
+    (this->sprite).setTexture(this->texture);
+ }
   ~VortexPastille(){}
 
   string to_string()const{

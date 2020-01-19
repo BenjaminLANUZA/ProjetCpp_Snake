@@ -40,6 +40,9 @@ int equivalence_mur_specifique();
 ///////////////////////////////////////////
 bool pastilleSmoked_management(int positionX, int positionY);
 bool pastilleVortex_management(int positionX, int positionY);
+
+void draw_Game(); 
+
 };
 //operateur permettant de formatter la sauvegarde de la partie sur un fichier
 inline ofstream& operator<<(ofstream& f, Partiecomplex& p){

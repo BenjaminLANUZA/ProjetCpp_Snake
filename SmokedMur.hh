@@ -14,10 +14,14 @@ class SmokedMur : public Mur{
   SmokedMur(int positionX, int positionY):Mur(positionX, positionY),print_mur_specifique("="){
     (this->texture).loadFromFile("images/Murs/Mur_Smoked.png", sf::IntRect(0, 0, 63, 63));
     (this->sprite).setTexture(this->texture);
-    (this->sprite).setPosition(positionX*63.f,positionY*63.f);
+    (this->sprite).setPosition(positionX*64.f,positionY*64.f);
 
   }
-  SmokedMur(const SmokedMur& s):Mur(s.getX(),s.getY()),print_mur_specifique("="){}
+  SmokedMur(const SmokedMur& s):Mur(s.getX(),s.getY()),print_mur_specifique("="){
+    (this->texture).loadFromFile("images/Murs/Mur_Smoked.png", sf::IntRect(0, 0, 63, 63));
+    (this->sprite).setTexture(this->texture);
+    (this->sprite).setPosition(s.getX()*64.f,s.getY()*64.f);
+  }
   ~SmokedMur(){}
 
   string to_string()const{ return "SmokedMur"; }

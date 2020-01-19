@@ -6,14 +6,27 @@
 class SmokedPastille:public Pastille{
 
 public:
-  SmokedPastille():Pastille(){};
+  SmokedPastille():Pastille(){
+    (this->texture).loadFromFile("images/Pastilles/Smoked_Pastille.png", sf::IntRect(0, 0, 63, 63));
+    this->sprite.setTexture(this->texture);
+  }
+
   SmokedPastille(int positionX, int positionY):Pastille(positionX, positionY){
      (this->texture).loadFromFile("images/Pastilles/Smoked_Pastille.png", sf::IntRect(0, 0, 63, 63));
     this->sprite.setTexture(this->texture);
-    (this->sprite).setPosition(positionX*63.f,positionY*63.f);
+    (this->sprite).setPosition(positionX*64.f,positionY*64.f);
   }
-  SmokedPastille(const SmokedPastille& s):Pastille(s.getX(),s.getY()){}
-  SmokedPastille(const Chemin& c):Pastille(c){}
+
+  SmokedPastille(const SmokedPastille& s):Pastille(s.getX(),s.getY()){
+        (this->texture).loadFromFile("images/Pastilles/Smoked_Pastille.png", sf::IntRect(0, 0, 63, 63));
+    this->sprite.setTexture(this->texture);
+    (this->sprite).setPosition(s.getX()*64.f,s.getY()*64.f);
+  }
+
+  SmokedPastille(const Chemin& c):Pastille(c){
+    (this->texture).loadFromFile("images/Pastilles/Smoked_Pastille.png", sf::IntRect(0, 0, 63, 63));
+    this->sprite.setTexture(this->texture);
+  }
   ~SmokedPastille(){}
 
   string to_string()const{ return "Pastille smoked"; }

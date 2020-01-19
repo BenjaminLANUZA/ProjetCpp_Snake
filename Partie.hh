@@ -174,7 +174,7 @@ public:
   bool is_snake_part(int positionX, int positionY);
   //////////////////////////////////////////////
   int DrawFond();
-  void draw_Game(Element ***matrice);
+  void draw_Game();
 
 };
 
