@@ -13,8 +13,7 @@
 
 using namespace std;
 
-#define WINDOW 1071
-#define TAILLEIMAGE 63
+
 
 class Snake{
 
@@ -61,8 +60,7 @@ public:
       f << it->getX() << " " << it->getY() << endl;
     }
   }
-   int DrawFond();
-   void draw_Game(Partiesimple partie);
+
 };
 
 #endif /* end of include guard: SNAKE */

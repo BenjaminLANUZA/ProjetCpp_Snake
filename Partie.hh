@@ -10,6 +10,9 @@
 #include <iterator>
 #include <algorithm>
 #include <ctime>
+#include <SFML/System.hpp>
+#include <SFML/Window.hpp>
+#include <SFML/Graphics.hpp>
 
 using namespace std;
 
@@ -30,7 +33,11 @@ using namespace std;
 ////CHEMIN////////
 #include "Chemin.hh"
 
+#define WINDOW 1071
+#define TAILLEIMAGE 63
+
 using namespace std;
+
 class Partie{
 protected :
   Element*** matrixGame;
@@ -49,8 +56,12 @@ protected :
   int nbPoints;
 
 
+  sf::RenderWindow window;
+
+
 public:
   Partie():pastilleSmoked_ready(false),game(true),nbPoints(0){
+     window.create(sf::VideoMode(WINDOW,WINDOW), "Snake 4.0",sf::Style::Titlebar | sf::Style::Close);
     matrixGame = new Element**[GAME_SIZE];
     for(int i = 0; i < GAME_SIZE; i++){
       matrixGame[i] = new Element*[GAME_SIZE];
@@ -80,7 +91,7 @@ public:
   const EatablePastille& getEatablePastille()const;
   const SmokedPastille& getSmokedPastille()const;
   const VortexPastille& getVortexPastille()const;
- // const Element*** getMatrix()const;
+   Element*** getMatrix();
   Element* getElementMatrixptr(int i, int j);
  // const Element getElementMatrix(int i, int j)const;
   //operateurs permettants de formatter la sauvegarde d'un groupe d'element sur un fichier
@@ -162,6 +173,9 @@ public:
   void add_body_to_snake(int positionX, int positionY);
   bool is_snake_part(int positionX, int positionY);
   //////////////////////////////////////////////
+  int DrawFond();
+  void draw_Game(Element ***matrice);
+
 };
 
 //operateurs permettants de formatter la sauvegarde d'un groupe d'element sur un fichier
@@ -201,5 +215,7 @@ inline ofstream& operator<<(ofstream& f, vector<VortexMur>& v){
   }
   return f;
 }
+
+
 
 #endif /* end of include guard: PARTIE */

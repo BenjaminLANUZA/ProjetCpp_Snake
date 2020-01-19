@@ -1,12 +1,82 @@
 #include "Partie.hh"
 
+
+
+
+int Partie::DrawFond(){
+  cout<<"draw_fond"<<endl; 
+
+    sf::Texture textureFond;
+    if (!textureFond.loadFromFile("images/Chemin.png", sf::IntRect(0,0,WINDOW,WINDOW))){
+      return EXIT_FAILURE;
+  }
+  sf::Sprite spriteFond(textureFond);
+
+  sf::Texture contour1; 
+  if (!contour1.loadFromFile("images/Murs/Mur_Normal.png", sf::IntRect(0,0,WINDOW,TAILLEIMAGE))){
+      return EXIT_FAILURE;
+  }
+  sf::Sprite spriteContour1(contour1);
+
+  sf::Texture contour2; 
+  if (!contour2.loadFromFile("images/Murs/Mur_Normal.png", sf::IntRect(0,0,TAILLEIMAGE,WINDOW))){
+      return EXIT_FAILURE;
+  }
+  sf::Sprite spriteContour2(contour2);
+
+
+  sf::Texture contour3; 
+  if (!contour3.loadFromFile("images/Murs/Mur_Normal.png", sf::IntRect(0,0,WINDOW,TAILLEIMAGE))){
+      return EXIT_FAILURE;
+  }
+  sf::Sprite spriteContour3(contour3);
+  spriteContour3.setPosition(sf::Vector2f(0, 650.f)); // absolute position
+
+  sf::Texture contour4; 
+  if (!contour4.loadFromFile("images/Murs/Mur_Normal.png", sf::IntRect(0,0,TAILLEIMAGE,WINDOW))){
+      return EXIT_FAILURE;
+  }
+  sf::Sprite spriteContour4(contour4);
+  spriteContour4.setPosition(sf::Vector2f(1008.f, 0)); // absolute position
+
+  (this->window).draw(spriteFond);
+  (this->window).draw(spriteContour1);
+  (this->window).draw(spriteContour2);
+  (this->window).draw(spriteContour3);
+  (this->window).draw(spriteContour4);
+
+  return 1; 
+}
+
+//-------------------------------------------------------------------------------------------------------------
+void Partie::draw_Game(Element ***matrice){
+     int v = 0; 
+     v = DrawFond();
+     if(!v){cout<<"Erreur DrawFond"<<endl; }
+     
+     Element*  ElementMatrice;
+
+    for (int i = 0; i < 15; ++i)
+    {
+        for (int j = 0; j < 15; ++j)
+        {   
+            ElementMatrice = matrice[i][j]; 
+            (this->window).draw(ElementMatrice->getSprite());
+
+
+        }
+    }
+}
+
+
+
 const int& Partie::getNbPoints()const{ return this->nbPoints;}
 const vector<Chemin>& Partie::getChemin()const{ return this->chemin;}
 const vector<Body>& Partie::getSnake()const{ return this->snake;}
 const EatablePastille& Partie::getEatablePastille()const{ return this->pastilleEatable;}
 const SmokedPastille& Partie::getSmokedPastille()const{ return this->pastilleSmoked;}
 const VortexPastille& Partie::getVortexPastille()const{ return this->pastilleVortex;}
-//const Element*** Partie::getMatrix()const{ return this->matrixGame; }
+ Element*** Partie::getMatrix(){ return this->matrixGame; }
 Element* Partie::getElementMatrixptr(int i, int j){ return matrixGame[i][j];}
 //const Element Partie::getElementMatrix(int i, int j)const{ return *(matrixGame[i][j]);}
 int Partie::find_rand_chemin()const{
@@ -84,6 +154,11 @@ string Partie::to_stringTab(string tabPrint[GAME_SIZE_PRINT][GAME_SIZE_PRINT])co
 }
 //////////////////////////////////////////////////////////////////////////////////
 int Partie::jeu(){
+  
+  int machin = DrawFond(); 
+  if(!machin){cout<<machin<<" dommage"<<endl; }
+  (this->window).display(); 
+
   char input;
   int positionTeteX, positionTeteY;
   //on cree les thread sur les parties
@@ -91,7 +166,7 @@ int Partie::jeu(){
   pastilleSmoked_time_management.join()*/
   cout << "Commandes :\n\tz : haut\n\tw : bas\n\tq : gauche\n\td : droite\n\n\techap : quitte le jeu" << endl;
   cin >> input;
-  while(input != 27 && game){
+  while(input != 27 && game && window.isOpen()){
     //on recupere la position de la tete du snake
     positionTeteX = snake.front().getX();
     positionTeteY = snake.front().getY();
@@ -112,7 +187,22 @@ int Partie::jeu(){
         //on ne fait rien
         break;
     }
+
     action(positionTeteX, positionTeteY);
+    cout<<"appel draw"<<endl; 
+
+    (this->window).clear();
+    draw_Game(this->getMatrix()); 
+
+    (this->window).display();
+    cout<<" sortie draw_game"<<endl;
+    /*sf::Event event;
+    while (window.pollEvent(event))
+    {           
+      if (event.type == sf::Event::Closed)
+      window.close();
+    }*/
+
     cin >> input;
   }
   return this->nbPoints;

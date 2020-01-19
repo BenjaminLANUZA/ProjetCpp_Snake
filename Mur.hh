@@ -7,6 +7,7 @@ class Mur : public Element{
   public :
   Mur():Element(){};
   Mur(int positionX, int positionY):Element(positionX, positionY, false){
+    cout<<"construct mur"<<endl; 
     (this->texture).loadFromFile("images/Murs/Mur_Normal.png", sf::IntRect(0, 0, 63, 63));
     this->sprite.setTexture(this->texture);
     (this->sprite).setPosition(sf::Vector2f(positionX*63.f, positionY*63.f));

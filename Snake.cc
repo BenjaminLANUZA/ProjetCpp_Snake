@@ -1,7 +1,5 @@
 #include "Snake.hh"
-
-
-sf::RenderWindow window(sf::VideoMode(WINDOW,WINDOW), "Snake 4.0",sf::Style::Titlebar | sf::Style::Close);  
+#include "Partie.hh"
 
 Snake::Snake(){
   int score = -1;//, score_max;
@@ -34,71 +32,6 @@ Snake::~Snake(){
   delete(pc);
 }
 
-int Snake::DrawFond(){
-
-    sf::Texture textureFond;
-    if (!textureFond.loadFromFile("Chemin.jpg", sf::IntRect(0,0,WINDOW,WINDOW))){
-      return EXIT_FAILURE;
-  }
-  sf::Sprite spriteFond(textureFond);
-
-  sf::Texture contour1; 
-  if (!contour1.loadFromFile("mur.jpg", sf::IntRect(0,0,WINDOW,TAILLEIMAGE))){
-      return EXIT_FAILURE;
-  }
-  sf::Sprite spriteContour1(contour1);
-
-  sf::Texture contour2; 
-  if (!contour2.loadFromFile("mur.jpg", sf::IntRect(0,0,TAILLEIMAGE,WINDOW))){
-      return EXIT_FAILURE;
-  }
-  sf::Sprite spriteContour2(contour2);
-
-
-  sf::Texture contour3; 
-  if (!contour3.loadFromFile("mur.jpg", sf::IntRect(0,0,WINDOW,TAILLEIMAGE))){
-      return EXIT_FAILURE;
-  }
-  sf::Sprite spriteContour3(contour3);
-  spriteContour3.setPosition(sf::Vector2f(0, 650.f)); // absolute position
-
-  sf::Texture contour4; 
-  if (!contour4.loadFromFile("mur.jpg", sf::IntRect(0,0,TAILLEIMAGE,WINDOW))){
-      return EXIT_FAILURE;
-  }
-  sf::Sprite spriteContour4(contour4);
-  spriteContour4.setPosition(sf::Vector2f(1008.f, 0)); // absolute position
-
-  window.draw(spriteFond);
-  window.draw(spriteContour1);
-  window.draw(spriteContour2);
-  window.draw(spriteContour3);
-  window.draw(spriteContour4);
-
-  return 0; 
-}
-
-//-------------------------------------------------------------------------------------------------------------
-void Snake::draw_Game(Partiesimple partie){
-     window.clear();
-     int v = 0; 
-     v = DrawFond();
-     if(v){cout<<"Erreur DrawFond"<<endl; }
-     
-     Element*  ElementMatrice;
-    for (int i = 0; i < 16; ++i)
-    {
-        for (int j = 0; j < 16; ++j)
-        {
-            ElementMatrice = partie.getElementMatrixptr( i,  j);
-            window.draw(ElementMatrice->getSprite());
-
-
-        }
-    }
-    window.display();
-}
-
 void Snake::print_rules(){
   //affichage des regles du jeu
   ifstream f("./data/Regles.txt");
@@ -109,10 +42,10 @@ void Snake::print_rules(){
 //on choisit le mode de jeu que l'on veut faire, ainsi que les differents niveaux
 int Snake::start_new_game(){
   print_rules();
-  int i = DrawFond();
+/*int i = DrawFond();
 if (!i){
     return EXIT_FAILURE;
-  }
+  }*/
   char choix;
   do{
     cin >> choix;
